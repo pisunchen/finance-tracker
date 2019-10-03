@@ -1,5 +1,7 @@
 package ui;
 
+import java.util.Scanner;
+
 public class Clock {
     public int countdown = 0;
     public int initial = 0;
@@ -16,7 +18,7 @@ public class Clock {
     }
 
     public void timeStopwatch() {
-        System.out.print("Stopwatch confirmed, press 1 to begin ");
+        System.out.print("Stopwatch confirmed, beginning countdown");
     }
 
 
@@ -45,6 +47,25 @@ public class Clock {
             Thread.sleep(1000);
             initial++;
 
+        }
+    }
+
+    public void clockSetup(int selection) throws InterruptedException {
+        Scanner user = new Scanner(System.in);
+        selection = Integer.parseInt(user.nextLine());
+        while (true) {
+            if (selection == 1) {
+                timeCountdown();
+                int countdown = Integer.parseInt(user.nextLine());
+                beginCountdown(countdown);
+                break;
+            } else if (selection == 2) {
+                timeStopwatch();
+                beginStopwatch(0);
+                break;
+            } else if (selection == 0) {
+                break;
+            }
         }
     }
 }
