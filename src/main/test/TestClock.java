@@ -12,7 +12,8 @@ class TestClock {
 
     @BeforeEach
     void runBefore() {
-        c1 = new Clock(); }
+        c1 = new Clock();
+    }
 
     @Test
     void testCountdownNotNegative() throws InterruptedException {
