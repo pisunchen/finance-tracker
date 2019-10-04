@@ -17,12 +17,12 @@ class TestClock {
 
     @Test
     void testCountdownNotNegative() throws InterruptedException {
-        assertTrue(c1.countdown >= 0);
+        assertTrue(c1.initial >= 0);
     }
 
     @Test
     void testCountdownMaxVal() throws InterruptedException {
-        assertTrue(c1.countdown <= 2147483647);
+        assertTrue(c1.initial <= 2147483647);
     }
 
     @Test
