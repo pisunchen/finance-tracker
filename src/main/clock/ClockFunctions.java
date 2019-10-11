@@ -1,4 +1,4 @@
-package ui;
+package clock;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Scanner;
 
-public abstract class ClockFunctions implements CountUp, CountDown {
+public abstract class ClockFunctions implements ClockFN, IntroScreen {
     public int initial = 0;
 
     @Override

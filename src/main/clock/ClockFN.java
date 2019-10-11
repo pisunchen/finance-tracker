@@ -1,13 +1,8 @@
-package ui;
+package clock;
 
 import java.io.IOException;
 
-public interface CountUp {
-    void select();
-
-    void timeCountdown();
-
-    void timeStopwatch();
+public interface ClockFN {
 
     void beginCountdown(int initial) throws InterruptedException, IOException;
 
