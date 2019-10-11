@@ -1,5 +1,6 @@
 package test;
 
+import clock.ClockFunctions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import clock.Clock;
@@ -14,8 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class TestClock {
-    Clock c1;
-
+    ClockFunctions c1;
 
     @BeforeEach
     void runBefore() {
