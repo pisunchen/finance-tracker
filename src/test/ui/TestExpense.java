@@ -1,5 +1,6 @@
 package ui;
 
+import exceptions.NoNegBalanceException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import expense.ExpenseTracker;
@@ -51,4 +52,32 @@ class TestExpense {
         lotsCash.setSelection(800);
         assertEquals(lotsCash.updateNegBalance(), 29200);
     }
+
+    @Test
+   void testNegativeNum() {
+        withCash.setVar("-300");
+        try {
+            withCash.plusBalance();
+        } catch (NoNegBalanceException e) {
+            System.out.println("Test Passed!");
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    @Test test1beginExpenseTracker() {
+//        withCash.setVar("1");
+//
+//    }
+
 }

@@ -14,6 +14,7 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
     private int initialBudget;
     private int selection;
     private Scanner user;
+    public String var = "";
 
     ExpenseTracker(int e) {
         initialBudget = e;
@@ -23,8 +24,16 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
         user = new Scanner(System.in);
     }
 
-    protected void userFeedback() {
-        selection = Integer.parseInt(user.nextLine());
+    public void userFeedback(String nothing) {
+        if (nothing.equals("")) {
+            setSelection(Integer.parseInt(user.nextLine()));
+        } else {
+            setSelection(Integer.parseInt(nothing));
+        }
+    }
+
+    public void setVar(String nothing) {
+        var = nothing;
     }
 
     @Override
@@ -68,17 +77,27 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
         scannerSetup();
         while (true) {
             prompt();
-            userFeedback();
+            userFeedback(var);
             if (selection == 1) {
                 subBalance();
             } else if (selection == 2) {
-                plusBalance();
+                exceptionThrown();
             } else if (selection == 3) {
                 endProgram();
                 break;
             } else if (selection == 9) {
                 lastBudget();
             }
+        }
+    }
+
+    public void exceptionThrown() {
+        try {
+            plusBalance();
+        } catch (NoNegBalanceException e) {
+            System.out.println("No negative input for balance!");
+        } finally {
+            System.out.println("Thanks for using our services, please leave a review!");
         }
     }
 
@@ -111,21 +130,11 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
         selection = select;
     }
 
-    public int getSelection() {
-        return selection;
-    }
-
-    private void plusBalance() {
+    public void plusBalance() throws NoNegBalanceException {
         addBudget();
-        userFeedback();
+        userFeedback(var);
         if (selection < 0) {
-            try {
-                throw new NoNegBalanceException();
-            } catch (NoNegBalanceException noNegativeBalance) {
-                noNegativeMoney();
-            } finally {
-                System.out.println("Only positive numbers are allowed for adding to your budget");
-            }
+            throw new NoNegBalanceException();
         } else {
             updatePosBalance();
             transaction();
