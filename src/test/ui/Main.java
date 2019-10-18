@@ -15,7 +15,6 @@ public class Main {
         int reader = Integer.parseInt(user.nextLine());
         ExpenseFunctions e = new Expense(reader);
         e.beginExpenseTracker();
-
     }
 
 }
