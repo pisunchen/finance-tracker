@@ -82,28 +82,29 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
         }
     }
 
-    private void lastBudget() throws IOException {
+
+    public void lastBudget() throws IOException {
         System.out.println("Your previous budget " + load());
     }
 
-    private void subBalance() {
-        addExpense();
-        selection = Integer.parseInt(user.nextLine());
-        if (selection < 0) {
-            noNegativeExpense();
-        } else if (selection > 1000) {
-            try {
-                throw new SpentAlotException();
-            } catch (SpentAlotException e) {
-                System.out.println("You spent a lot! Watchout next time!");
+    public void subBalance() {
+            addExpense();
+            selection = Integer.parseInt(user.nextLine());
+            if (selection < 0) {
+                noNegativeExpense();
+            } else if (selection > 1000) {
+                try {
+                    throw new SpentAlotException();
+                } catch (SpentAlotException e) {
+                    System.out.println("You spent a lot! Watchout next time!");
+                    updateNegBalance();
+                    transaction();
+                }
+            } else {
                 updateNegBalance();
                 transaction();
             }
-        } else {
-            updateNegBalance();
-            transaction();
         }
-    }
 
     public void setSelection(int select) {
         selection = select;
