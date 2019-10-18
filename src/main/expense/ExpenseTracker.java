@@ -1,5 +1,7 @@
 package expense;
 
+import exceptions.NoNegBalanceException;
+import exceptions.SpentAlotException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
@@ -89,6 +91,14 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
         selection = Integer.parseInt(user.nextLine());
         if (selection < 0) {
             noNegativeExpense();
+        } else if (selection > 1000) {
+            try {
+                throw new SpentAlotException();
+            } catch (SpentAlotException e) {
+                System.out.println("You spent a lot! Watchout next time!");
+                updateNegBalance();
+                transaction();
+            }
         } else {
             updateNegBalance();
             transaction();
@@ -107,7 +117,13 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
         addBudget();
         userFeedback();
         if (selection < 0) {
-            noNegativeMoney();
+            try {
+                throw new NoNegBalanceException();
+            } catch (NoNegBalanceException noNegativeBalance) {
+                noNegativeMoney();
+            } finally {
+                System.out.println("Only positive numbers are allowed for adding to your budget");
+            }
         } else {
             updatePosBalance();
             transaction();

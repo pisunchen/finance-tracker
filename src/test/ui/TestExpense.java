@@ -41,7 +41,7 @@ class TestExpense {
     }
 
     @Test
-    void withBudgetDecrese() {
+    void withBudgetDecrease() {
         withCash.setSelection(500);
         assertEquals(withCash.updateNegBalance(), 1500);
     }
