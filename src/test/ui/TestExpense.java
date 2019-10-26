@@ -1,6 +1,7 @@
 package ui;
 
 import exceptions.NoNegBalanceException;
+import exceptions.SpentAlotException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import expense.ExpenseTracker;
@@ -54,7 +55,7 @@ class TestExpense {
     }
 
     @Test
-   void testNegativeNum() {
+   void testNegativeNumCatch() {
         withCash.setKey("-300");
         try {
             withCash.plusBalance();
@@ -64,7 +65,7 @@ class TestExpense {
     }
 
     @Test
-    void testUpdateBalanceNoThrow() {
+    void testUpdateBalanceNoCatch() {
         withCash.setKey("500");
         try {
             withCash.plusBalance();
@@ -73,4 +74,27 @@ class TestExpense {
             assertEquals(withCash.getBalance(),2500);
         }
     }
+
+    @Test
+    void testSpentAlotCatch() {
+        lotsCash.setKey("10000");
+        try {
+            lotsCash.subBalance();
+        } catch (SpentAlotException e) {
+            System.out.println("Test Passed");
+            assertEquals(lotsCash.getBalance(), 20000);
+        }
+    }
+
+    @Test
+    void testSpentAlotNoCatch() {
+        lotsCash.setKey("200");
+        try {
+            lotsCash.subBalance();
+        } catch (SpentAlotException e) {
+            fail("Not meant to be caught!");
+            assertEquals(lotsCash.getBalance(), 29800);
+        }
+    }
+
 }

@@ -74,9 +74,9 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
             prompt();
             userFeedback(key);
             if (selection == 1) {
-                subBalance();
+                spentAlotExpection();
             } else if (selection == 2) {
-                exceptionThrown();
+                negativeException();
             } else if (selection == 3) {
                 endProgram();
                 break;
@@ -86,11 +86,23 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
         }
     }
 
-    public void exceptionThrown() {
+    public void negativeException() {
         try {
             plusBalance();
         } catch (NoNegBalanceException e) {
             System.out.println("No negative input for balance!");
+        } finally {
+            System.out.println("Transaction recorded");
+        }
+    }
+
+    public void spentAlotExpection() {
+        try {
+            subBalance();
+        } catch (SpentAlotException e) {
+            System.out.println("You spent a lot! Be considerate next time!");
+            updateNegBalance();
+            transaction();
         } finally {
             System.out.println("Transaction recorded");
         }
@@ -104,19 +116,13 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
         System.out.println("Your previous budget " + load());
     }
 
-    public void subBalance() {
+    public void subBalance() throws SpentAlotException {
         addExpense();
-        selection = Integer.parseInt(user.nextLine());
+        userFeedback(key);
         if (selection < 0) {
             noNegativeExpense();
-        } else if (selection > 1000) {
-            try {
-                throw new SpentAlotException();
-            } catch (SpentAlotException e) {
-                System.out.println("You spent a lot! Be considerate next time!");
-                updateNegBalance();
-                transaction();
-            }
+        } else if (selection > 10000) {
+            throw new SpentAlotException();
         } else {
             updateNegBalance();
             transaction();
