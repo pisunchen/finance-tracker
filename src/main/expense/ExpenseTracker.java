@@ -74,7 +74,7 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
             prompt();
             userFeedback(key);
             if (selection == 1) {
-                spentAlotExpection();
+                spentAlotException();
             } else if (selection == 2) {
                 negativeException();
             } else if (selection == 3) {
@@ -96,7 +96,7 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
         }
     }
 
-    public void spentAlotExpection() {
+    public void spentAlotException() {
         try {
             subBalance();
         } catch (SpentAlotException e) {

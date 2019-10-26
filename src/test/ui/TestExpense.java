@@ -55,46 +55,30 @@ class TestExpense {
     }
 
     @Test
-   void testNegativeNumCatch() {
+    void testNegativeNumCatch() {
         withCash.setKey("-300");
-        try {
-            withCash.plusBalance();
-        } catch (NoNegBalanceException e) {
-            System.out.println("Test Passed!");
-        }
+        withCash.negativeException();
     }
 
     @Test
     void testUpdateBalanceNoCatch() {
         withCash.setKey("500");
-        try {
-            withCash.plusBalance();
-        } catch (NoNegBalanceException e) {
-            fail("Not meant to be caught!");
-            assertEquals(withCash.getBalance(),2500);
-        }
+        withCash.negativeException();
+        assertEquals(withCash.getBalance(), 2500);
     }
 
     @Test
     void testSpentAlotCatch() {
         lotsCash.setKey("10000");
-        try {
-            lotsCash.subBalance();
-        } catch (SpentAlotException e) {
-            System.out.println("Test Passed");
-            assertEquals(lotsCash.getBalance(), 20000);
-        }
+        lotsCash.spentAlotException();
+        assertEquals(lotsCash.getBalance(), 20000);
     }
 
     @Test
     void testSpentAlotNoCatch() {
         lotsCash.setKey("200");
-        try {
-            lotsCash.subBalance();
-        } catch (SpentAlotException e) {
-            fail("Not meant to be caught!");
-            assertEquals(lotsCash.getBalance(), 29800);
+        lotsCash.spentAlotException();
+        assertEquals(lotsCash.getBalance(), 29800);
         }
-    }
 
 }
