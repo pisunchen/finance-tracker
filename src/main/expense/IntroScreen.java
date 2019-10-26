@@ -10,8 +10,6 @@ public interface IntroScreen {
 
     void transaction();
 
-    void noNegativeMoney();
-
     void noNegativeExpense();
 
     void endProgram();

@@ -8,8 +8,8 @@ import expense.Expense;
 
 
 import java.io.IOException;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class TestExpense {
     public ExpenseTracker noCash;
@@ -55,7 +55,7 @@ class TestExpense {
 
     @Test
    void testNegativeNum() {
-        withCash.setVar("-300");
+        withCash.setKey("-300");
         try {
             withCash.plusBalance();
         } catch (NoNegBalanceException e) {
@@ -63,21 +63,14 @@ class TestExpense {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-//    @Test test1beginExpenseTracker() {
-//        withCash.setVar("1");
-//
-//    }
-
+    @Test
+    void testUpdateBalanceNoThrow() {
+        withCash.setKey("500");
+        try {
+            withCash.plusBalance();
+        } catch (NoNegBalanceException e) {
+            fail("Not meant to be caught!");
+            assertEquals(withCash.getBalance(),2500);
+        }
+    }
 }

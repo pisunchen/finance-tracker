@@ -14,7 +14,7 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
     private int initialBudget;
     private int selection;
     private Scanner user;
-    public String var = "";
+    public String key = "";
 
     ExpenseTracker(int e) {
         initialBudget = e;
@@ -24,16 +24,16 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
         user = new Scanner(System.in);
     }
 
-    public void userFeedback(String nothing) {
-        if (nothing.equals("")) {
+    public void userFeedback(String input) {
+        if (input.equals("")) {
             setSelection(Integer.parseInt(user.nextLine()));
         } else {
-            setSelection(Integer.parseInt(nothing));
+            setSelection(Integer.parseInt(input));
         }
     }
 
-    public void setVar(String nothing) {
-        var = nothing;
+    public void setKey(String value) {
+        key = value;
     }
 
     @Override
@@ -57,11 +57,6 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
     }
 
     @Override
-    public void noNegativeMoney() {
-        System.out.println("Cannot add negative money!");
-    }
-
-    @Override
     public void noNegativeExpense() {
         System.out.println("Cannot have a negative expense!");
     }
@@ -77,7 +72,7 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
         scannerSetup();
         while (true) {
             prompt();
-            userFeedback(var);
+            userFeedback(key);
             if (selection == 1) {
                 subBalance();
             } else if (selection == 2) {
@@ -97,10 +92,13 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
         } catch (NoNegBalanceException e) {
             System.out.println("No negative input for balance!");
         } finally {
-            System.out.println("Thanks for using our services, please leave a review!");
+            System.out.println("Transaction recorded");
         }
     }
 
+    public int getBalance() {
+        return initialBudget;
+    }
 
     public void lastBudget() throws IOException {
         System.out.println("Your previous budget " + load());
@@ -115,7 +113,7 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
             try {
                 throw new SpentAlotException();
             } catch (SpentAlotException e) {
-                System.out.println("You spent a lot! Watchout next time!");
+                System.out.println("You spent a lot! Be considerate next time!");
                 updateNegBalance();
                 transaction();
             }
@@ -132,7 +130,7 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
 
     public void plusBalance() throws NoNegBalanceException {
         addBudget();
-        userFeedback(var);
+        userFeedback(key);
         if (selection < 0) {
             throw new NoNegBalanceException();
         } else {
