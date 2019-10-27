@@ -16,7 +16,7 @@ class TestExpense {
     private ExpenseTracker lotsCash;
 
     @BeforeEach
-    void runBefore() {
+    void setUp() {
         noCash = new Expense(0);
         withCash = new Expense(2000);
         lotsCash = new Expense(30000);
@@ -35,19 +35,19 @@ class TestExpense {
     }
 
     @Test
-    void budgetIncrease() {
+    void testBudgetIncrease() {
         withCash.setSelection(300);
         assertEquals(withCash.updatePosBalance(), 2300);
     }
 
     @Test
-    void withBudgetDecrease() {
+    void testWithBudgetDecrease() {
         withCash.setSelection(500);
         assertEquals(withCash.updateNegBalance(), 1500);
     }
 
     @Test
-    void lotsBudgetDecrease() {
+    void testLotsBudgetDecrease() {
         lotsCash.setSelection(800);
         assertEquals(lotsCash.updateNegBalance(), 29200);
     }
