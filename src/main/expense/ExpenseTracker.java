@@ -20,7 +20,7 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
         initialBudget = e;
     }
 
-    protected void scannerSetup() {
+    public void scannerSetup() {
         user = new Scanner(System.in);
     }
 
@@ -70,6 +70,10 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
     public void beginExpenseTracker() throws IOException {
         save(initialBudget);
         scannerSetup();
+        selectionFunction();
+    }
+
+    public void selectionFunction() throws IOException {
         while (true) {
             prompt();
             userFeedback(key);
@@ -128,7 +132,6 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
             transaction();
         }
     }
-
 
     public void setSelection(int select) {
         selection = select;

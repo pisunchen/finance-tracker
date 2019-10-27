@@ -11,4 +11,5 @@ public interface ExpenseFunctions {
     void save(int initialBudget) throws IOException;
 
     int load() throws IOException;
+
 }

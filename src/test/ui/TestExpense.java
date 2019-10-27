@@ -6,16 +6,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import expense.ExpenseTracker;
 import expense.Expense;
-
-
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class TestExpense {
-    public ExpenseTracker noCash;
-    public ExpenseTracker withCash;
-    public ExpenseTracker lotsCash;
+    private ExpenseTracker noCash;
+    private ExpenseTracker withCash;
+    private ExpenseTracker lotsCash;
 
     @BeforeEach
     void runBefore() {
@@ -58,6 +56,7 @@ class TestExpense {
     void testNegativeNumCatch() {
         withCash.setKey("-300");
         withCash.negativeException();
+        assertEquals(withCash.getBalance(),2000);
     }
 
     @Test
@@ -68,17 +67,28 @@ class TestExpense {
     }
 
     @Test
-    void testSpentAlotCatch() {
-        lotsCash.setKey("10000");
+    void testSpentLotsCatch() {
+        lotsCash.setKey("15000");
         lotsCash.spentAlotException();
-        assertEquals(lotsCash.getBalance(), 20000);
+        assertEquals(lotsCash.getBalance(), 15000);
     }
 
     @Test
-    void testSpentAlotNoCatch() {
+    void testSpentLotsNoCatch() {
         lotsCash.setKey("200");
-        lotsCash.spentAlotException();
-        assertEquals(lotsCash.getBalance(), 29800);
+        try {
+            lotsCash.subBalance();
+        } catch (SpentAlotException e) {
+            fail("Not meant to be caught");
         }
+        assertEquals(lotsCash.getBalance(), 29800);
+    }
+
+//    @Test
+//    void testSelect() throws IOException {
+//        noCash.setKey("2");
+//        noCash.selectionFunction();
+//    }
+
 
 }
