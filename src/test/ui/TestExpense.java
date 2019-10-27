@@ -21,7 +21,7 @@ class TestExpense {
         withCash = new Expense(2000);
         lotsCash = new Expense(30000);
     }
-
+    
     @Test
     void testSaveBudget() throws IOException {
         noCash.save(100);
