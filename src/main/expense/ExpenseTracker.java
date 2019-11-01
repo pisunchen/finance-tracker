@@ -6,8 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
 
@@ -15,6 +14,8 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
     private int selection;
     private Scanner user;
     public String key = "";
+
+    Map<String,Integer> expenseMap = new HashMap<>();
 
     ExpenseTracker(int e) {
         initialBudget = e;
@@ -38,7 +39,7 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
 
     @Override
     public void prompt() {
-        System.out.println("Press [1] to add an expense, [2] to add money to budget, [3] to quit, [9] original budget");
+        System.out.println("Press [1] to add an expense, [2] to add money to budget, [3] to quit, [9] for transaction");
     }
 
     @Override
@@ -85,7 +86,7 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
                 endProgram();
                 break;
             } else if (selection == 9) {
-                lastBudget();
+                System.out.println(expenseMap.get("transaction"));
             }
         }
     }
@@ -116,13 +117,14 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
         return initialBudget;
     }
 
-    public void lastBudget() throws IOException {
-        System.out.println("Your previous budget " + load());
-    }
+//    public void lastBudget() throws IOException {
+//        System.out.println("Your previous budget " + load());
+//    }
 
     public void subBalance() throws SpentAlotException {
         addExpense();
         userFeedback(key);
+        expenseMap.put("transaction",selection);
         if (selection < 0) {
             noNegativeExpense();
         } else if (selection > 10000) {
@@ -155,7 +157,6 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
     public int updatePosBalance() {
         return initialBudget = initialBudget + selection;
     }
-
 
     @Override
     public void save(int initialBudget) throws IOException {
