@@ -4,13 +4,13 @@ public interface IntroScreen {
 
     void prompt();
 
-    void addExpense();
+    void msgHowMuchSpent();
 
-    void addBudget();
+    void msgAddBudget();
 
-    void transaction();
+    void msgTransaction();
 
-    void noNegativeExpense();
+    void msgNoNegativeExpense();
 
-    void endProgram();
+    void msgEndProgram();
 }

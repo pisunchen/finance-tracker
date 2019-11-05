@@ -1,11 +1,11 @@
 package ui;
 
-import exceptions.NoNegBalanceException;
 import exceptions.SpentAlotException;
+import expense.Expense;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import expense.ExpenseTracker;
-import expense.Expense;
+
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -83,12 +83,4 @@ class TestExpense {
         }
         assertEquals(lotsCash.getBalance(), 29800);
     }
-
-//    @Test
-//    void testSelect() throws IOException {
-//        noCash.setKey("2");
-//        noCash.selectionFunction();
-//    }
-
-
 }

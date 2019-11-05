@@ -3,7 +3,6 @@ package ui;
 import exceptions.NoNegBalanceException;
 import expense.Expense;
 import expense.ExpenseFunctions;
-import expense.ExpenseTracker;
 
 import java.io.IOException;
 import java.util.Scanner;

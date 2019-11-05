@@ -15,7 +15,6 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
     private Scanner user;
     public String key = "";
 
-    Map<String,Integer> expenseMap = new HashMap<>();
 
     ExpenseTracker(int e) {
         initialBudget = e;
@@ -39,31 +38,26 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
 
     @Override
     public void prompt() {
-        System.out.println("Press [1] to add an expense, [2] to add money to budget, [3] to quit, [9] for transaction");
+        System.out.println("Select [1] to add an expense");
+        System.out.println("       [2] to add money to your budget");
+        System.out.println("       [3] to quit the program");
+        System.out.println("       [8] to see the previous amount you added to your balance");
+        System.out.println("       [9] to see the previous transaction done");
     }
 
     @Override
-    public void addExpense() {
+    public void msgHowMuchSpent() {
         System.out.println("How much money have you spent today?");
     }
 
-    @Override
-    public void addBudget() {
-        System.out.println("How much money do you want to add to your budget?");
-    }
 
     @Override
-    public void transaction() {
-        System.out.println("Your current balance: " + initialBudget);
-    }
-
-    @Override
-    public void noNegativeExpense() {
+    public void msgNoNegativeExpense() {
         System.out.println("Cannot have a negative expense!");
     }
 
     @Override
-    public void endProgram() {
+    public void msgEndProgram() {
         System.out.println("Thank you for using our services, goodbye!");
     }
 
@@ -74,6 +68,19 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
         selectionFunction();
     }
 
+    @Override
+    public void msgAddBudget() {
+        System.out.println("How much money do you want to add to your budget?");
+    }
+
+
+    @Override
+    public void msgTransaction() {
+        System.out.println("Your current balance: " + initialBudget);
+    }
+
+    Map<String,Integer> expenseMap = new HashMap<>();
+
     public void selectionFunction() throws IOException {
         while (true) {
             prompt();
@@ -83,10 +90,12 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
             } else if (selection == 2) {
                 negativeException();
             } else if (selection == 3) {
-                endProgram();
+                msgEndProgram();
                 break;
             } else if (selection == 9) {
-                System.out.println(expenseMap.get("transaction"));
+                System.out.println(expenseMap.get("expenses"));
+            } else if (selection == 8) {
+                System.out.println(expenseMap.get("moneyAdded"));
             }
         }
     }
@@ -107,7 +116,7 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
         } catch (SpentAlotException e) {
             System.out.println("You spent a lot! Be considerate next time!");
             updateNegBalance();
-            transaction();
+            msgTransaction();
         } finally {
             System.out.println("Transaction recorded");
         }
@@ -122,16 +131,16 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
 //    }
 
     public void subBalance() throws SpentAlotException {
-        addExpense();
+        msgHowMuchSpent();
         userFeedback(key);
-        expenseMap.put("transaction",selection);
+        expenseMap.put("expenses",selection);
         if (selection < 0) {
-            noNegativeExpense();
+            msgNoNegativeExpense();
         } else if (selection > 10000) {
             throw new SpentAlotException();
         } else {
             updateNegBalance();
-            transaction();
+            msgTransaction();
         }
     }
 
@@ -140,13 +149,14 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
     }
 
     public void plusBalance() throws NoNegBalanceException {
-        addBudget();
+        msgAddBudget();
         userFeedback(key);
+        expenseMap.put("moneyAdded",selection);
         if (selection < 0) {
             throw new NoNegBalanceException();
         } else {
             updatePosBalance();
-            transaction();
+            msgTransaction();
         }
     }
 
