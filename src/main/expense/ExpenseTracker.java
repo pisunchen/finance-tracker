@@ -16,7 +16,7 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
     public String key = "";
 
 
-    ExpenseTracker(int e) {
+    ExpenseTracker(int e) {  //CONSTRUCTOR
         initialBudget = e;
     }
 
@@ -34,31 +34,12 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
 
     public void setKey(String value) {
         key = value;
-    }
 
-    @Override
-    public void prompt() {
-        System.out.println("Select [1] to add an expense");
-        System.out.println("       [2] to add money to your budget");
-        System.out.println("       [3] to quit the program");
-        System.out.println("       [8] to see the previous amount you added to your balance");
-        System.out.println("       [9] to see the previous transaction done");
     }
 
     @Override
     public void msgHowMuchSpent() {
         System.out.println("How much money have you spent today?");
-    }
-
-
-    @Override
-    public void msgNoNegativeExpense() {
-        System.out.println("Cannot have a negative expense!");
-    }
-
-    @Override
-    public void msgEndProgram() {
-        System.out.println("Thank you for using our services, goodbye!");
     }
 
     @Override
@@ -79,23 +60,27 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
         System.out.println("Your current balance: " + initialBudget);
     }
 
-    Map<String,Integer> expenseMap = new HashMap<>();
+//    Map<String,Integer> expenseMap = new HashMap<>();
 
-    public void selectionFunction() throws IOException {
+    public void selectionFunction() {
         while (true) {
-            prompt();
+            System.out.println("Select [1] to add an expense");
+            System.out.println("       [2] to add money to your budget");
+            System.out.println("       [3] to quit the program");
+            System.out.println("       [8] to see the previous amount you added to your balance");
+            System.out.println("       [9] to see the previous transaction done");
             userFeedback(key);
             if (selection == 1) {
                 spentAlotException();
             } else if (selection == 2) {
                 negativeException();
             } else if (selection == 3) {
-                msgEndProgram();
+                System.out.println("Thank you for using our services, goodbye!");
                 break;
-            } else if (selection == 9) {
-                System.out.println(expenseMap.get("expenses"));
-            } else if (selection == 8) {
-                System.out.println(expenseMap.get("moneyAdded"));
+//            } else if (selection == 9) {
+//                System.out.println(expenseMap.get("expenses"));
+//            } else if (selection == 8) {
+//                System.out.println(expenseMap.get("moneyAdded"));
             }
         }
     }
@@ -126,16 +111,12 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
         return initialBudget;
     }
 
-//    public void lastBudget() throws IOException {
-//        System.out.println("Your previous budget " + load());
-//    }
-
     public void subBalance() throws SpentAlotException {
         msgHowMuchSpent();
         userFeedback(key);
-        expenseMap.put("expenses",selection);
+//        expenseMap.put("expenses",selection);
         if (selection < 0) {
-            msgNoNegativeExpense();
+            System.out.println("Cannot have a negative expense!");
         } else if (selection > 10000) {
             throw new SpentAlotException();
         } else {
@@ -151,7 +132,7 @@ public abstract class ExpenseTracker implements ExpenseFunctions, IntroScreen {
     public void plusBalance() throws NoNegBalanceException {
         msgAddBudget();
         userFeedback(key);
-        expenseMap.put("moneyAdded",selection);
+//        expenseMap.put("moneyAdded",selection);
         if (selection < 0) {
             throw new NoNegBalanceException();
         } else {
