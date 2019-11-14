@@ -40,8 +40,9 @@ public class Balance {
         this.value = value;
         if (value < 0) {
             throw new NoNegBalanceException();
+        } else {
+            return initialBudget = initialBudget + value;
         }
-        else return initialBudget = initialBudget + value;
     }
 
     public int updateNegBalance() {

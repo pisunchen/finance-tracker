@@ -32,9 +32,11 @@ public class Main {
             int selection = Integer.parseInt(user.nextLine());
             if (selection == 1) {
                 addExpense();
-            }if (selection == 2) {
+            }
+            if (selection == 2) {
                 addMoney();
-            }if (selection == 3) {
+            }
+            if (selection == 3) {
                 break;
             }
         }
@@ -75,7 +77,7 @@ public class Main {
     }
 
     private static void msgCurrentStatus() {
-        System.out.println("Your current balance: "+ balance.getInitialBudget());
+        System.out.println("Your current balance: " + balance.getInitialBudget());
     }
 
 
