@@ -42,7 +42,7 @@ public class testBalance {
     @Test
     public void testSaveLoad() throws IOException {
         noMoney.save(5000);
-        assertEquals(5000,noMoney.load());
+        assertEquals(5000, noMoney.load());
     }
 
     @Test
@@ -50,11 +50,5 @@ public class testBalance {
         assertEquals(withMoney.subBalance(1000), 1000);
         assertEquals(noMoney.subBalance(385),-385);
     }
-
-    @Test
-    public void testNegativeMoneyException() {
-
-    }
-
 
 }

@@ -13,6 +13,13 @@ public class Account {
         this.balance = balance;
     }
 
-    public void accessAccount(String password) {
+    public int accessAccount(String password) {
+        if (password.equals(this.password)) {
+            return this.balance;
+        } else {
+            System.out.println("Incorrect password, try again");
+        }
+        return 0;
     }
+
 }

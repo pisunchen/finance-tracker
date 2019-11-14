@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Main {
     private static Balance balance;
     private static Scanner user;
-    private static Account person;
+    private static Account myAccount;
 
     public static void main(String[] args) {
         init();
@@ -18,7 +18,7 @@ public class Main {
     }
 
     public static void init() {
-        person = new Account(382, 1200, "dog123");
+        myAccount = new Account(382, 1200, "dog123");
     }
 
     public static void processProgram() {
@@ -39,6 +39,9 @@ public class Main {
             if (selection == 3) {
                 break;
             }
+            if (selection == 9) {
+                checkAccount();
+            }
         }
     }
 
@@ -47,9 +50,14 @@ public class Main {
         System.out.println("       [2] to add money to your budget");
         System.out.println("       [3] to quit the program");
 //        System.out.println("       [8] to see the previous amount you added to your balance");
-//        System.out.println("       [9] to see the previous transaction done");
+        System.out.println("       [9] to see current funds in a saved account");
     }
 
+    public static void checkAccount() {
+        System.out.println("Please enter your ID and password");
+        String selection = user.nextLine();
+        System.out.println(myAccount.accessAccount(selection));
+    }
 
     public static void addExpense() {
         System.out.println("How much money have you spent today? ");
