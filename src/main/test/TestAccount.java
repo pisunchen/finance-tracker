@@ -18,25 +18,20 @@ public class TestAccount {
 
     @BeforeEach
     public void runBefore() {
-        moneyAccount = new CheckingsAccount("Sam",1200);
-        noMoneyAccount = new CheckingsAccount("Ryan",0);
-        savingsAccount = new SavingsAccount("Bryan",300);
+        moneyAccount = new CheckingsAccount("Sam", 1200);
+        noMoneyAccount = new CheckingsAccount("Ryan", 0);
+        savingsAccount = new SavingsAccount("Bryan", 300);
     }
 
     @Test
     public void testPassword() {
-        assertEquals(moneyAccount.accessAccount("Sam"),1200);
-        assertEquals(noMoneyAccount.accessAccount("Ryan"),0);
+        assertEquals(moneyAccount.accessAccount("Sam"), 1200);
+        assertEquals(noMoneyAccount.accessAccount("Ryan"), 0);
     }
 
     @Test
     public void testGetID() {
-        assertEquals(moneyAccount.getID(),123);
-    }
-
-    @Test
-    public void testInterestRate() {
-        assertEquals(savingsAccount.calculateInterestTotal(), savingsAccount.getBalance() * savingsAccount.getInterest());
+        assertEquals(moneyAccount.getID(), 123);
     }
 
 
