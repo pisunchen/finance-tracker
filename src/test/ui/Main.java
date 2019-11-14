@@ -18,7 +18,7 @@ public class Main {
     }
 
     public static void init() {
-        myAccount = new Account(382, 1200, "dog123");
+        myAccount = new Account(382, 1200, "bulldog2");
     }
 
     public static void processProgram() {
