@@ -1,4 +1,4 @@
-package ui;
+package test;
 
 import exceptions.NoNegBalanceException;
 import exceptions.SpentAlotException;
@@ -10,17 +10,17 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class testBalance {
+public class TestBalance {
 
     Balance noMoney;
     Balance withMoney;
-    Balance LotsMoney;
+    Balance lotsMoney;
 
     @BeforeEach
     public void runBefore() {
         noMoney = new Balance(0);
         withMoney = new Balance(2000);
-        LotsMoney = new Balance(30000);
+        lotsMoney = new Balance(30000);
     }
 
     @Test

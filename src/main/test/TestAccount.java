@@ -1,4 +1,4 @@
-package ui;
+package test;
 
 import expense.Account;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class testAccount {
+public class TestAccount {
 
     Account moneyAccount;
     Account noMoneyAccount;
@@ -20,8 +20,8 @@ public class testAccount {
 
     @Test
     public void testPassword() {
-        assertEquals(moneyAccount.accessAccount("reddit") ,1200);
-        assertEquals(moneyAccount.accessAccount("bro") ,0);
+        assertEquals(moneyAccount.accessAccount("reddit"),1200);
+        assertEquals(moneyAccount.accessAccount("bro"),0);
     }
 
 
