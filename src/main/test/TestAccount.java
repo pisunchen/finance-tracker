@@ -1,6 +1,9 @@
 package test;
 
 import expense.Account;
+import expense.Balance;
+import expense.CheckingsAccount;
+import expense.SavingsAccount;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,17 +14,29 @@ public class TestAccount {
 
     Account moneyAccount;
     Account noMoneyAccount;
+    SavingsAccount savingsAccount;
 
     @BeforeEach
     public void runBefore() {
-        moneyAccount = new Account(324,1200, "reddit");
-        noMoneyAccount = new Account(82, 0,"bronze");
+        moneyAccount = new CheckingsAccount("Sam",1200);
+        noMoneyAccount = new CheckingsAccount("Ryan",0);
+        savingsAccount = new SavingsAccount("Bryan",300);
     }
 
     @Test
     public void testPassword() {
-        assertEquals(moneyAccount.accessAccount("reddit"),1200);
-        assertEquals(moneyAccount.accessAccount("bro"),0);
+        assertEquals(moneyAccount.accessAccount("Sam"),1200);
+        assertEquals(noMoneyAccount.accessAccount("Ryan"),0);
+    }
+
+    @Test
+    public void testGetID() {
+        assertEquals(moneyAccount.getID(),123);
+    }
+
+    @Test
+    public void testInterestRate() {
+        assertEquals(savingsAccount.calculateInterestTotal(), savingsAccount.getBalance() * savingsAccount.getInterest());
     }
 
 

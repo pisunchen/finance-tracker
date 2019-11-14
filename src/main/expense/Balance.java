@@ -13,10 +13,15 @@ public class Balance {
 
     private int initialBudget;
     private int value;
+    private Account account;
 
     public Balance(int initialBudget) {
         this.initialBudget = initialBudget;
     }
+
+//    public int setBalanceOfAccount(int initialBudget) {
+//        return account.setAccountBalance(initialBudget);
+//    }
 
     public int getInitialBudget() {
         return initialBudget;
@@ -60,4 +65,5 @@ public class Balance {
         writer.println(initialBudget);
         writer.close();
     }
+
 }

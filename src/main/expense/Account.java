@@ -1,25 +1,65 @@
 package expense;
 
-public class Account {
+import java.util.HashMap;
+import java.util.Objects;
 
-    int accountID;
-    int balance;
-    String password;
+public abstract class Account {
+
+    private String id;
+    private int balance;
+    private Balance bal;
+    private HashMap<Integer, Integer> accountMap = new HashMap<>();
 
     // CONSTRUCTS ACCOUNT WITH ID, BALANCE, AND A PASSWORD
-    public Account(int accountID, int balance, String password) {
-        this.accountID = accountID;
-        this.password = password;
+    public Account(String id, int balance) {
+        this.id = id;
         this.balance = balance;
     }
 
-    public int accessAccount(String password) {
-        if (password.equals(this.password)) {
-            return this.balance;
+    public int setAccountBalance(int balance) {
+        return this.balance = bal.getInitialBudget();
+    }
+
+    public int accessAccount(String id) {
+        if (this.id.equals(id)) {
+            return balance;
         } else {
-            System.out.println("Incorrect password, try again");
+            System.out.println("Incorrect id, try again");
         }
         return 0;
     }
 
+    public int getBalance() {
+        return balance;
+    }
+
+
+//    public void addAccount(int id, int balance) {
+//        accountMap.put(id,balance);
+//    }
+
+    public String getID() {
+        return this.id;
+    }
+
+    public int retrieveAccount(int id) {
+        return accountMap.get(id);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Account account = (Account) o;
+        return id == account.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }
