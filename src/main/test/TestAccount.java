@@ -2,6 +2,7 @@ package test;
 
 import expense.Account;
 import expense.Balance;
+import expense.Bank;
 import expense.SavingsAccount;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ public class TestAccount {
     Account moneyAccount2;
     SavingsAccount savingsAccount;
     Balance balance;
+    Bank bank;
 
     @BeforeEach
     public void runBefore() {
@@ -22,6 +24,7 @@ public class TestAccount {
         moneyAccount2 = new SavingsAccount("Jimmy", new Balance(1200));
         noMoneyAccount = new SavingsAccount("Ryan", new Balance(0));
         savingsAccount = new SavingsAccount("Bryan", new Balance(300));
+        bank = new Bank();
         balance = new Balance(0);
     }
 
@@ -29,6 +32,7 @@ public class TestAccount {
     public void testInterestRate() {
         assertEquals(savingsAccount.calculateInterestTotal(), (300 * savingsAccount.getInterest()));
     }
+
 
     @Test
     public void getBalance() {
