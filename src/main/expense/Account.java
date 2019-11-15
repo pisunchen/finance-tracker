@@ -1,49 +1,27 @@
 package expense;
 
-import java.util.HashMap;
 import java.util.Objects;
 
 public abstract class Account {
 
     private String id;
-    private int balance;
-    private Balance bal;
-    private HashMap<Integer, Integer> accountMap = new HashMap<>();
+    private Balance balance;
 
-    // CONSTRUCTS ACCOUNT WITH ID, BALANCE, AND A PASSWORD
-    public Account(String id, int balance) {
+    public Account(String id, Balance balance) {
         this.id = id;
         this.balance = balance;
     }
 
-    public int setAccountBalance(int balance) {
-        return this.balance = bal.getInitialBudget();
+    public void setBalance(Balance balance) {
+        this.balance = balance;
     }
 
-    public int accessAccount(String id) {
-        if (this.id.equals(id)) {
-            return balance;
-        } else {
-            System.out.println("Incorrect id, try again");
-        }
-        return 0;
-    }
-
-    public int getBalance() {
+    public Balance getBalance() {
         return balance;
     }
 
-
-//    public void addAccount(int id, int balance) {
-//        accountMap.put(id,balance);
-//    }
-
     public String getID() {
         return this.id;
-    }
-
-    public int retrieveAccount(int id) {
-        return accountMap.get(id);
     }
 
     @Override

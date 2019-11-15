@@ -6,26 +6,24 @@ import expense.Account;
 import expense.Balance;
 import expense.SavingsAccount;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
     private static Balance balance;
     private static Scanner user;
     private static SavingsAccount account;
-    private HashMap<Integer, Integer> accountMap = new HashMap<>();
 
     public static void main(String[] args) {
         processProgram();
     }
 
-
     public static void processProgram() {
         user = new Scanner(System.in);
 
-        System.out.println("Welcome to the expense tracker, what is your initial budget?");
-        balance = new Balance(Integer.parseInt(user.nextLine()));
-        account = new SavingsAccount("test", balance.getInitialBudget());
+        System.out.println("Welcome to the expense tracker");
+        balance = new Balance(0);
+        account = new SavingsAccount("David", balance);
+        Account account1 = new SavingsAccount("David", balance);
 
         while (true) {
             initialScreen();
@@ -39,34 +37,30 @@ public class Main {
             if (selection == 3) {
                 break;
             }
-//            if (selection == 4) {
-//                checkAccount();
-//            }
-            if (selection == 5) {
+            if (selection == 4) {
                 System.out.println(account.calculateInterestTotal());
             }
-//            if (selection == 9) {
-//                checkDuplicate();
+            if (selection == 5) {
+//                account.setBalance(balance == new Balance Integer.parseInt(user.nextLine()));
+            }
+            if (selection == 9) {
+                System.out.println(account1.equals(account));
             }
         }
+    }
 
 
-    public static void initialScreen() {
+    private static void initialScreen() {
         System.out.println("Select [1] to add an expense");
         System.out.println("       [2] to add money to your budget");
         System.out.println("       [3] to quit the program");
-//        System.out.println("       [4] to see balances by inputting id ");
-        System.out.println("       [5] to see the total value after one year (with interest)");
-//        System.out.println("       [9] to see if you have another parallel account");
+        System.out.println("       [4] to see the total value after one year (with interest)");
+        System.out.println("       [5] to set a predetermined cash amount)");
+        System.out.println("       [9] to see if there exists an account in this system already");
     }
 
-//    public static void checkAccount() {
-//        System.out.println("Please enter id");
-//        int selection = Integer.parseInt(user.nextLine());
-//        System.out.println(account.retrieveAccount(selection));
-//    }
 
-    public static void addExpense() {
+    private static void addExpense() {
         System.out.println("How much money have you spent today? ");
         int selection = Integer.parseInt(user.nextLine());
         try {
@@ -79,7 +73,7 @@ public class Main {
         }
     }
 
-    public static void addMoney() {
+    private static void addMoney() {
         System.out.println("How much money would you like to add? ");
         int selection = Integer.parseInt(user.nextLine());
         try {

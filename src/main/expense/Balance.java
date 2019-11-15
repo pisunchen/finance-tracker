@@ -19,9 +19,6 @@ public class Balance {
         this.initialBudget = initialBudget;
     }
 
-//    public int setBalanceOfAccount(int initialBudget) {
-//        return account.setAccountBalance(initialBudget);
-//    }
 
     public int getInitialBudget() {
         return initialBudget;

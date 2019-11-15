@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestBalance {
 
@@ -58,7 +57,6 @@ public class TestBalance {
         }
     }
 
-
     @Test
     public void testSaveLoad() throws IOException {
         noMoney.save(5000);
@@ -70,6 +68,4 @@ public class TestBalance {
         assertEquals(withMoney.subBalance(1000), 1000);
         assertEquals(noMoney.subBalance(385),-385);
     }
-
-
 }
