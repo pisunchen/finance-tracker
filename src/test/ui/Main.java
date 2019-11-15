@@ -4,6 +4,7 @@ import exceptions.NoNegBalanceException;
 import exceptions.SpentAlotException;
 import expense.Account;
 import expense.Balance;
+import expense.Bank;
 import expense.SavingsAccount;
 
 import java.util.Scanner;
@@ -12,6 +13,7 @@ public class Main {
     private static Balance balance;
     private static Scanner user;
     private static SavingsAccount account;
+    private static Bank bank;
 
     public static void main(String[] args) {
         processProgram();
@@ -24,6 +26,9 @@ public class Main {
         balance = new Balance(0);
         account = new SavingsAccount("David", balance);
         Account account1 = new SavingsAccount("David", balance);
+        bank = new Bank();
+        bank.addAccount(account);
+        bank.addAccount(account1);
 
         while (true) {
             initialScreen();
@@ -40,9 +45,9 @@ public class Main {
             if (selection == 4) {
                 System.out.println(account.calculateInterestTotal());
             }
-            if (selection == 5) {
+//            if (selection == 6) {
+
 //                account.setBalance(balance == new Balance Integer.parseInt(user.nextLine()));
-            }
             if (selection == 9) {
                 System.out.println(account1.equals(account));
             }
@@ -55,7 +60,8 @@ public class Main {
         System.out.println("       [2] to add money to your budget");
         System.out.println("       [3] to quit the program");
         System.out.println("       [4] to see the total value after one year (with interest)");
-        System.out.println("       [5] to set a predetermined cash amount)");
+//        System.out.println("       [5] to set a predetermined cash amount");
+//        System.out.println("       [6] to see accounts present in this bank");
         System.out.println("       [9] to see if there exists an account in this system already");
     }
 

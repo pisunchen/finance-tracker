@@ -20,6 +20,7 @@ public class Balance {
     }
 
 
+
     public int getInitialBudget() {
         return initialBudget;
     }

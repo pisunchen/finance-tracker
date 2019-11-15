@@ -6,14 +6,22 @@ public abstract class Account {
 
     private String id;
     private Balance balance;
+    private Bank bank;
 
     public Account(String id, Balance balance) {
         this.id = id;
         this.balance = balance;
     }
 
-    public void setBalance(Balance balance) {
-        this.balance = balance;
+    public void setBank(Bank bank) {
+        if (this.bank == null) {
+            this.bank = bank;
+        }
+        if (!(this.bank.equals(bank))) {
+            this.bank.removeAccount(this);
+            this.bank = bank;
+            bank.addAccount(this);
+        }
     }
 
     public Balance getBalance() {
