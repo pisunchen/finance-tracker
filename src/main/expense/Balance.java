@@ -2,6 +2,7 @@ package expense;
 
 import exceptions.NoNegBalanceException;
 import exceptions.SpentAlotException;
+import observer.Subject;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,17 +10,14 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class Balance {
+public class Balance extends Subject {
 
     private int initialBudget;
     private int value;
-    private Account account;
 
     public Balance(int initialBudget) {
         this.initialBudget = initialBudget;
     }
-
-
 
     public int getInitialBudget() {
         return initialBudget;
@@ -48,8 +46,8 @@ public class Balance {
         }
     }
 
-    public int updateNegBalance() {
-        return initialBudget = initialBudget - value;
+    public void updateNegBalance() {
+        initialBudget = initialBudget - value;
     }
 
     public int load() throws IOException {

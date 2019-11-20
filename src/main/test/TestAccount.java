@@ -11,12 +11,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestAccount {
 
-    Account moneyAccount;
-    Account noMoneyAccount;
-    Account moneyAccount2;
-    SavingsAccount savingsAccount;
-    Balance balance;
-    Bank bank;
+    private Account moneyAccount;
+    private Account noMoneyAccount;
+    private Account moneyAccount2;
+    private SavingsAccount savingsAccount;
+    private Bank bank;
+    private Bank bank2;
 
     @BeforeEach
     public void runBefore() {
@@ -25,14 +25,13 @@ public class TestAccount {
         noMoneyAccount = new SavingsAccount("Ryan", new Balance(0));
         savingsAccount = new SavingsAccount("Bryan", new Balance(300));
         bank = new Bank();
-        balance = new Balance(0);
+        bank2 = new Bank();
     }
 
     @Test
     public void testInterestRate() {
         assertEquals(savingsAccount.calculateInterestTotal(), (300 * savingsAccount.getInterest()));
     }
-
 
     @Test
     public void getBalance() {
@@ -51,6 +50,16 @@ public class TestAccount {
         assertFalse(moneyAccount.equals(noMoneyAccount));
         assertFalse(moneyAccount.equals(null));
         assertTrue(moneyAccount.equals(moneyAccount));
+    }
+
+    @Test
+    public void testSetBank() {
+        moneyAccount.setBank(bank);
+        assertEquals(moneyAccount.getBank(), bank);
+        moneyAccount.setBank(bank2);
+        assertEquals(moneyAccount.getBank(), bank2);
+
+
     }
 
 

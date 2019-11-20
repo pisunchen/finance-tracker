@@ -12,8 +12,6 @@ import java.util.Scanner;
 public class Main {
     private static Balance balance;
     private static Scanner user;
-    private static SavingsAccount account;
-    private static Bank bank;
 
     public static void main(String[] args) {
         processProgram();
@@ -24,11 +22,13 @@ public class Main {
 
         System.out.println("Welcome to the expense tracker");
         balance = new Balance(0);
-        account = new SavingsAccount("David", balance);
+        SavingsAccount account = new SavingsAccount("David", balance);
         Account account1 = new SavingsAccount("David", balance);
-        bank = new Bank();
+        Account account2 = new SavingsAccount("Patrick", balance);
+        Bank bank = new Bank();
         bank.addAccount(account);
         bank.addAccount(account1);
+        bank.addAccount(account2);
 
         while (true) {
             initialScreen();
@@ -46,7 +46,6 @@ public class Main {
                 System.out.println(account.calculateInterestTotal());
             }
 //            if (selection == 6) {
-
 //                account.setBalance(balance == new Balance Integer.parseInt(user.nextLine()));
             if (selection == 9) {
                 System.out.println(account1.equals(account));
@@ -94,6 +93,4 @@ public class Main {
     private static void msgCurrentStatus() {
         System.out.println("Your current balance: " + balance.getInitialBudget());
     }
-
-
 }
