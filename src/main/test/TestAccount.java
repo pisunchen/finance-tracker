@@ -58,8 +58,13 @@ public class TestAccount {
         assertEquals(moneyAccount.getBank(), bank);
         moneyAccount.setBank(bank2);
         assertEquals(moneyAccount.getBank(), bank2);
+    }
 
-
+    @Test
+    public void testRemoveAccount() {
+        moneyAccount.setBank(bank);
+        assertEquals(moneyAccount.getBank(), bank);
+        bank.removeAccount(moneyAccount);
     }
 
 

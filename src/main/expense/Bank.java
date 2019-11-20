@@ -13,7 +13,6 @@ public class Bank implements AccountObserver {
         accounts = new ArrayList<>();
     }
 
-
     public void addAccount(Account account) {
 
         if (!(accounts.contains(account))) {
@@ -32,4 +31,5 @@ public class Bank implements AccountObserver {
             accounts.remove(account);
         }
     }
+
 }
