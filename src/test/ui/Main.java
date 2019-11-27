@@ -6,28 +6,40 @@ import expense.Account;
 import expense.Balance;
 import expense.Bank;
 import expense.SavingsAccount;
+import gui.BalanceGUI;
 
+import javax.swing.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     private static Balance balance;
     private static Scanner user;
+    private static JFrame frame;
+    private static BalanceGUI ui;
+    private static Bank bank;
+
 
     public static void main(String[] args) {
-        processProgram();
+        ui = new BalanceGUI();
+        SwingUtilities.invokeLater(ui);
+//        processProgram();
     }
+
 
     public static void processProgram() {
         user = new Scanner(System.in);
+        bank = new Bank();
 
         System.out.println("Welcome to the expense tracker");
         balance = new Balance(0);
-        SavingsAccount account = new SavingsAccount("David", balance);
-        Account account1 = new SavingsAccount("David", balance);
-        Account account2 = new SavingsAccount("Patrick", balance);
-        Bank bank = new Bank();
+        SavingsAccount account = new SavingsAccount("Pisun", balance);
+//        Account account1 = new SavingsAccount("David", balance);
+        Account account2 = new SavingsAccount("Patrick", new Balance(2300));
+
         bank.addAccount(account);
-        bank.addAccount(account1);
+//        bank.addAccount(account1);
         bank.addAccount(account2);
 
         while (true) {
@@ -45,10 +57,8 @@ public class Main {
             if (selection == 4) {
                 System.out.println(account.calculateInterestTotal());
             }
-//            if (selection == 6) {
-//                account.setBalance(balance == new Balance Integer.parseInt(user.nextLine()));
             if (selection == 9) {
-                System.out.println(account1.equals(account));
+                bank.printAccounts(bank.getAccounts());
             }
         }
     }
@@ -59,9 +69,7 @@ public class Main {
         System.out.println("       [2] to add money to your budget");
         System.out.println("       [3] to quit the program");
         System.out.println("       [4] to see the total value after one year (with interest)");
-//        System.out.println("       [5] to set a predetermined cash amount");
-//        System.out.println("       [6] to see accounts present in this bank");
-        System.out.println("       [9] to see if there exists an account in this system already");
+        System.out.println("       [9] to see all accounts present within the system");
     }
 
 

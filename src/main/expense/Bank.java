@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Bank implements AccountObserver {
 
-    ArrayList<Account> accounts;
+    private ArrayList<Account> accounts;
 
     public Bank() {
         accounts = new ArrayList<>();
@@ -30,6 +30,16 @@ public class Bank implements AccountObserver {
         if (accounts.contains(account)) {
             accounts.remove(account);
         }
+    }
+
+    public void printAccounts(ArrayList<Account> accounts) {
+        for (Account a : accounts) {
+            System.out.println(a.getID()  + " has an account with a balance of " + a.getBalance().getInitialBudget());
+        }
+    }
+
+    public ArrayList<Account> getAccounts() {
+        return accounts;
     }
 
 }

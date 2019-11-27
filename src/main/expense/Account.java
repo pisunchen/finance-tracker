@@ -2,6 +2,7 @@ package expense;
 
 import observer.Subject;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public abstract class Account extends Subject {
@@ -15,6 +16,9 @@ public abstract class Account extends Subject {
         this.balance = balance;
     }
 
+
+    // MODIFIES: this
+    // EFFECTS: Sets a bank for an account
     public void setBank(Bank bank) {
         addObserver(bank);
         if (this.bank == null) {
@@ -29,7 +33,7 @@ public abstract class Account extends Subject {
     }
 
     public Balance getBalance() {
-        return balance;
+        return this.balance;
     }
 
     public String getID() {
@@ -39,7 +43,6 @@ public abstract class Account extends Subject {
     public Bank getBank() {
         return bank;
     }
-
 
     @Override
     public boolean equals(Object o) {

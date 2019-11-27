@@ -23,10 +23,15 @@ public class Balance extends Subject {
         return initialBudget;
     }
 
+    // MODIFIES: this
+    // EFFECTS: Sets the current balance
     public int setInitialBudget(int initialBudget) {
         return this.initialBudget = initialBudget;
     }
 
+
+    // MODIFIES: this
+    // EFFECTS: deducts the current balance by the value amount, throws an exception according to values inputted
     public int subBalance(int value) throws SpentAlotException {
         this.value = value;
         if (value < 0) {
@@ -37,6 +42,8 @@ public class Balance extends Subject {
         return initialBudget = initialBudget - value;
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the current balance by the value amount, throws an exception according to values inputted
     public int addBalance(int value) throws NoNegBalanceException {
         this.value = value;
         if (value < 0) {
@@ -46,20 +53,26 @@ public class Balance extends Subject {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: updates the negative balance
     public void updateNegBalance() {
-        initialBudget = initialBudget - value;
+        this.initialBudget = initialBudget - this.value;
     }
 
+    // EFFECTS: loads the saved data
     public int load() throws IOException {
         List<String> lines = Files.readAllLines(Paths.get("outputfile.txt"));
         String s = lines.get(0);
         return Integer.parseInt(s);
     }
 
+    // EFFECTS: saves data
     public void save(int initialBudget) throws IOException {
         PrintWriter writer = new PrintWriter("outputfile.txt", "UTF-8");
         writer.println(initialBudget);
         writer.close();
     }
+
+
 
 }
