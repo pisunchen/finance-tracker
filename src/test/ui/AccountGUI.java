@@ -1,5 +1,8 @@
 package ui;
 
+import com.sun.tools.javac.comp.Flow;
+import expense.Account;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,6 +15,10 @@ public class AccountGUI implements Runnable {
     private final int ColumnCons = 12;
     private final String font = "Trebuchet MS";
     private final int charSize = 14;
+    private JButton button2;
+    private JTextField text3;
+    private JTextField text4;
+    private JTable table;
 
 
     @Override
@@ -46,10 +53,18 @@ public class AccountGUI implements Runnable {
 
         BalanceAction calculate = new BalanceAction(text1, text2);
         button1.addActionListener(calculate);
-        card1.add(new JLabel(String.valueOf(calculate.returnBal())));
 
         JPanel card2 = new JPanel();
-        card2.add(new JLabel("Insert information to add Account")).setFont(new Font("Helvetica", Font.BOLD,15));;
+        card2.add(new JLabel("Insert information to add Account")).setFont(new Font("Helvetica", Font.BOLD,15));
+
+        card2.add(new JLabel("ID (Name): ")).setFont(new Font(font, Font.PLAIN,charSize));
+        card2.add(text1 = new JTextField("",ColumnCons));
+        card2.add(new JLabel("Balance: ")).setFont(new Font(font, Font.PLAIN,charSize));
+        card2.add(text2 = new JTextField("0",ColumnCons));
+        card2.add(button2 = new JButton("Add")).setFont(new Font(font, Font.PLAIN,charSize));
+
+        AccountAction acc = new AccountAction(text1,text2);
+        button2.addActionListener(acc);
 
         tabbedPane.addTab("Balance Tracker", card1);
         tabbedPane.addTab("Add Account", card2);
@@ -57,14 +72,8 @@ public class AccountGUI implements Runnable {
         JPanel card3 = new JPanel();
         tabbedPane.addTab("Account List", card3);
 
-        card2.add(new JLabel("ID (Name): ")).setFont(new Font(font, Font.PLAIN,charSize));
-        card2.add(new JTextField("",ColumnCons));
-        card2.add(new JLabel("Balance: ")).setFont(new Font(font, Font.PLAIN,charSize));
-        card2.add(new JTextField("",ColumnCons));
-        card2.add(new JButton("Add")).setFont(new Font(font, Font.PLAIN,charSize));
-
         pane.add(tabbedPane, BorderLayout.CENTER);
-        frame.setResizable(true);
+        frame.setResizable(false);
     }
 
 }

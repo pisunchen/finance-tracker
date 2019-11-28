@@ -1,11 +1,13 @@
 package ui;
 
-import exceptions.NoNegBalanceException;
 import expense.Balance;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+
+import static java.lang.Math.round;
 
 public class BalanceAction implements ActionListener {
 
@@ -45,11 +47,10 @@ public class BalanceAction implements ActionListener {
             revertBack();
         }
         revertBack();
-        returnBal();
-        System.out.println("Your current balance: $" + bal);
+        System.out.println("Your current balance: $" + Math.round(bal*100.0)/100.0);
     }
 
-    public double returnBal() {
+    public double getBal() {
         return bal;
     }
 }

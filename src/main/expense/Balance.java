@@ -12,27 +12,27 @@ import java.util.List;
 
 public class Balance extends Subject {
 
-    private int initialBudget;
-    private int value;
+    private double initialBudget;
+    private double value;
 
-    public Balance(int initialBudget) {
+    public Balance(double initialBudget) {
         this.initialBudget = initialBudget;
     }
 
-    public int getInitialBudget() {
+    public double getInitialBudget() {
         return initialBudget;
     }
 
     // MODIFIES: this
     // EFFECTS: Sets the current balance
-    public int setInitialBudget(int initialBudget) {
+    public double setInitialBudget(double initialBudget) {
         return this.initialBudget = initialBudget;
     }
 
 
     // MODIFIES: this
     // EFFECTS: deducts the current balance by the value amount, throws an exception according to values inputted
-    public int subBalance(int value) throws SpentAlotException {
+    public double subBalance(int value) throws SpentAlotException {
         this.value = value;
         if (value < 0) {
             System.out.println("Cannot have a negative expense!");
@@ -44,7 +44,7 @@ public class Balance extends Subject {
 
     // MODIFIES: this
     // EFFECTS: adds the current balance by the value amount, throws an exception according to values inputted
-    public int addBalance(int value) throws NoNegBalanceException {
+    public double addBalance(int value) throws NoNegBalanceException {
         this.value = value;
         if (value < 0) {
             throw new NoNegBalanceException();
