@@ -18,10 +18,9 @@ public class Main {
 
 
     public static void main(String[] args) {
-//        ui = new BalanceGUI();
         das = new AccountGUI();
         SwingUtilities.invokeLater(das);
-        processProgram();
+//        processProgram();
     }
 
 

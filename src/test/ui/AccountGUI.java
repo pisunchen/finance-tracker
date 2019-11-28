@@ -6,46 +6,50 @@ import java.awt.*;
 public class AccountGUI implements Runnable {
 
     private JFrame frame;
-    final  int extraWindowWidth = 100;
-    JTextField text1;
-    JTextField text2;
-    JButton button1;
+    private JTextField text1;
+    private JTextField text2;
+    private JButton button1;
+    private final int ColumnCons = 12;
+    private final String font = "Trebuchet MS";
+    private final int charSize = 14;
 
 
     @Override
     public void run() {
         frame = new JFrame("Balance Tracker");
+        frame.getContentPane().setBackground(Color.darkGray);
         frame.setPreferredSize(new Dimension(300, 400));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         createComponents(frame.getContentPane());
         frame.pack();
-        frame.setVisible(true);
 
+        frame.setVisible(true);
     }
 
-
-    public void createComponents(Container pane) {
+    private void createComponents(Container pane) {
         JTabbedPane tabbedPane = new JTabbedPane();
         JPanel card1 = new JPanel();
-        JPanel bottom = new JPanel(new GridLayout());
 
-        card1.add(new JLabel("Add values into corresponding cells"));
-        card1.add(new JLabel("Add Expense"));
-        card1.add(text1 = new JTextField("0",12));
+        card1.add(new JLabel("Add values into corresponding cells")).setFont(new Font("Helvetica", Font.BOLD,15));
+        card1.add(new JLabel("Add Expense")).setFont(new Font(font, Font.PLAIN,charSize));
+        card1.add(text1 = new JTextField("0",ColumnCons));
         text1.setPreferredSize(new Dimension(50,50));
-        card1.add(new JLabel("Add Balance"));
-        card1.add(text2 = new JTextField("0",12));
+        card1.add(new JLabel("Add Balance")).setFont(new Font(font, Font.PLAIN,charSize));
+
+        card1.add(text2 = new JTextField("0",ColumnCons));
         text2.setPreferredSize(new Dimension(50,50));
 
         card1.add(new JLabel("Current Balance"));
-        card1.add(new JTextField("0",12));
-        card1.add(button1 = new JButton("Calculate"));
+        card1.add(new JTextField("0" ,ColumnCons));
 
-        JPanel card2 = new JPanel();
-        card2.add(new JLabel("Insert information to add Account"));
+        card1.add(button1 = new JButton("Calculate"));
 
         BalanceAction calculate = new BalanceAction(text1, text2);
         button1.addActionListener(calculate);
+        card1.add(new JLabel(String.valueOf(calculate.returnBal())));
+
+        JPanel card2 = new JPanel();
+        card2.add(new JLabel("Insert information to add Account")).setFont(new Font("Helvetica", Font.BOLD,15));;
 
         tabbedPane.addTab("Balance Tracker", card1);
         tabbedPane.addTab("Add Account", card2);
@@ -53,11 +57,11 @@ public class AccountGUI implements Runnable {
         JPanel card3 = new JPanel();
         tabbedPane.addTab("Account List", card3);
 
-        card2.add(new JLabel("ID (Name): "));
-        card2.add(new JTextField("",12));
-        card2.add(new JLabel("Balance: "));
-        card2.add(new JTextField("",12));
-        card2.add(new JButton("Add"));
+        card2.add(new JLabel("ID (Name): ")).setFont(new Font(font, Font.PLAIN,charSize));
+        card2.add(new JTextField("",ColumnCons));
+        card2.add(new JLabel("Balance: ")).setFont(new Font(font, Font.PLAIN,charSize));
+        card2.add(new JTextField("",ColumnCons));
+        card2.add(new JButton("Add")).setFont(new Font(font, Font.PLAIN,charSize));
 
         pane.add(tabbedPane, BorderLayout.CENTER);
         frame.setResizable(true);

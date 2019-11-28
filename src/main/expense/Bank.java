@@ -14,7 +14,6 @@ public class Bank implements AccountObserver {
     }
 
     public void addAccount(Account account) {
-
         if (!(accounts.contains(account))) {
             accounts.add(account);
             account.setBank(this);

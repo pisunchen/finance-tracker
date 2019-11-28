@@ -11,7 +11,7 @@ public class BalanceAction implements ActionListener {
 
     private JTextField input1;
     private JTextField input2;
-    public int bal;
+    private double bal;
 
     protected BalanceAction(JTextField input1, JTextField input2) {
         this.input1 = input1;
@@ -20,18 +20,36 @@ public class BalanceAction implements ActionListener {
         bal = balance.getInitialBudget();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (Integer.parseInt(input1.getText()) < 0 || Integer.parseInt(input2.getText()) < 0) {
-            JOptionPane.showMessageDialog(null, "ERROR: Cannot input a negative amount!");
-        } else {
-            bal = bal - Integer.parseInt(input1.getText());
-            bal = bal + Integer.parseInt(input2.getText());
-        }
-
+    private void revertBack() {
         this.input1.setText("0");
         this.input2.setText("0");
+    }
 
-        System.out.println("$" + bal);
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (Double.parseDouble(input1.getText()) == 0 && Double.parseDouble(input2.getText()) == 0) {
+            JOptionPane.showMessageDialog(null, "ERROR: Enter a valid value to continue");
+        }
+        if (Double.parseDouble(input1.getText()) < 0 || Double.parseDouble(input2.getText()) < 0) {
+            JOptionPane.showMessageDialog(null, "ERROR: Cannot input a negative amount!");
+        }
+        if (Double.parseDouble(input1.getText()) > 0) {
+            double in = Double.parseDouble(input1.getText());
+            bal = bal - in;
+            JOptionPane.showMessageDialog(null,"Expense of: " + in + " recorded");
+            revertBack();
+        } else if (Double.parseDouble(input2.getText()) > 0){
+            double in = Double.parseDouble(input2.getText());
+            bal = bal + in;
+            JOptionPane.showMessageDialog(null,"Balance addition of : " + in + " recorded");
+            revertBack();
+        }
+        revertBack();
+        returnBal();
+        System.out.println("Your current balance: $" + bal);
+    }
+
+    public double returnBal() {
+        return bal;
     }
 }
