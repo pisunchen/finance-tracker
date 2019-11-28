@@ -6,25 +6,22 @@ import expense.Account;
 import expense.Balance;
 import expense.Bank;
 import expense.SavingsAccount;
-import gui.BalanceGUI;
 
 import javax.swing.*;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     private static Balance balance;
     private static Scanner user;
-    private static JFrame frame;
-    private static BalanceGUI ui;
+    private static AccountGUI das;
     private static Bank bank;
 
 
     public static void main(String[] args) {
-        ui = new BalanceGUI();
-        SwingUtilities.invokeLater(ui);
-//        processProgram();
+//        ui = new BalanceGUI();
+        das = new AccountGUI();
+        SwingUtilities.invokeLater(das);
+        processProgram();
     }
 
 
@@ -35,11 +32,8 @@ public class Main {
         System.out.println("Welcome to the expense tracker");
         balance = new Balance(0);
         SavingsAccount account = new SavingsAccount("Pisun", balance);
-//        Account account1 = new SavingsAccount("David", balance);
         Account account2 = new SavingsAccount("Patrick", new Balance(2300));
-
         bank.addAccount(account);
-//        bank.addAccount(account1);
         bank.addAccount(account2);
 
         while (true) {
