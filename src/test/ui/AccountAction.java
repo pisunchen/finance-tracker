@@ -8,19 +8,20 @@ import expense.SavingsAccount;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class AccountAction implements ActionListener {
 
     private JTextField name;
     private JTextField balance;
     private Bank bank;
-    private JLabel addition;
+    private JTextArea textAccount;
 
-    AccountAction(JTextField name, JTextField balance, JLabel addition) {
+    AccountAction(JTextField name, JTextField balance, JTextArea textAccount) {
         bank = new Bank();
         this.name = name;
         this.balance = balance;
-        this.addition = addition;
+        this.textAccount = textAccount;
     }
 
     private void revertBack() {
@@ -36,7 +37,10 @@ public class AccountAction implements ActionListener {
         } else {
             Account user = new SavingsAccount(name.getText(), new Balance(Double.parseDouble(balance.getText())));
             bank.addAccount(user);
-            bank.printAccounts(bank.getAccounts());
+
+            int g = bank.getAccounts().size();
+            ArrayList<Account> accounts = bank.getAccounts();
+            textAccount.setText(textAccount.getText() + bank.printAccount(accounts.get(g - 1)));
         }
     }
 }

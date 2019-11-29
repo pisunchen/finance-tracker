@@ -13,8 +13,9 @@ public class AccountGUI implements Runnable {
     private final String font = "Trebuchet MS";
     private final int charSize = 14;
     private JButton button2;
+    private JButton button3;
     private JTextField sum;
-    private JLabel addition;
+    private JTextArea textAccount;
 
     @Override
     public void run() {
@@ -46,20 +47,20 @@ public class AccountGUI implements Runnable {
     private void createComponents(Container pane) {
         JTabbedPane tabbedPane = new JTabbedPane();
 
-        // TODO:
-        JPanel card1 = new JPanel();
-        card1.add(new JLabel("Add values into corresponding cells")).setFont(titleFontSetUp());
-        card1.add(new JLabel("Add Expense")).setFont(regularFontSetUp());
-        card1.add(text1 = new JTextField("0",ColumnCons)).setPreferredSize(setSizeBox());
-        card1.add(new JLabel("Add Balance")).setFont(regularFontSetUp());
+        // TODO: MODIFIES THE FIRST PANEL
+        JPanel page1 = new JPanel();
+        page1.add(new JLabel("Add values into corresponding cells")).setFont(titleFontSetUp());
+        page1.add(new JLabel("Add Expense")).setFont(regularFontSetUp());
+        page1.add(text1 = new JTextField("0",ColumnCons)).setPreferredSize(setSizeBox());
+        page1.add(new JLabel("Add Balance")).setFont(regularFontSetUp());
 
-        card1.add(text2 = new JTextField("0",ColumnCons)).setPreferredSize(setSizeBox());
-        card1.add(new JLabel("Current Balance"));
-        card1.add(sum = new JTextField("0",8)).setPreferredSize(setSizeBox());
+        page1.add(text2 = new JTextField("0",ColumnCons)).setPreferredSize(setSizeBox());
+        page1.add(new JLabel("Current Balance"));
+        page1.add(sum = new JTextField("0",8)).setPreferredSize(setSizeBox());
         sum.setEditable(false);
 
-        card1.add(button1 = new JButton("Calculate"));
-        card1.add(button2 = new JButton("Reset Balance"));
+        page1.add(button1 = new JButton("Calculate"));
+        page1.add(button2 = new JButton("Reset Balance"));
 
         BalanceAction calculate = new BalanceAction(text1, text2, sum);
         button1.addActionListener(calculate);
@@ -68,28 +69,25 @@ public class AccountGUI implements Runnable {
         button2.addActionListener(reset);
 
 
-        //TODO:
-        JPanel card2 = new JPanel();
-        card2.add(new JLabel("Insert information to add Account")).setFont(titleFontSetUp());
+        //TODO: MODIFIES THE SECOND PANEL
+        JPanel page2 = new JPanel();
+        page2.add(new JLabel("Insert information to add Account")).setFont(titleFontSetUp());
 
-        card2.add(new JLabel("ID (Name): ")).setFont(regularFontSetUp());
-        card2.add(text1 = new JTextField("",ColumnCons));
-        card2.add(new JLabel("Balance: ")).setFont(regularFontSetUp());
-        card2.add(text2 = new JTextField("0",ColumnCons));
-        card2.add(button2 = new JButton("Add")).setFont(regularFontSetUp());
+        page2.add(new JLabel("ID (Name): ")).setFont(regularFontSetUp());
+        page2.add(text1 = new JTextField("",ColumnCons));
+        page2.add(new JLabel("Balance: ")).setFont(regularFontSetUp());
+        page2.add(text2 = new JTextField("0",ColumnCons));
+        page2.add(button3 = new JButton("Add")).setFont(regularFontSetUp());
+        page2.add(textAccount = new JTextArea());
+        textAccount.setLineWrap(true);
+        textAccount.setPreferredSize(new Dimension(245,250));
+        textAccount.setEditable(false);
 
-        AccountAction acc = new AccountAction(text1,text2, addition);
-        button2.addActionListener(acc);
+        AccountAction acc = new AccountAction(text1,text2, textAccount);
+        button3.addActionListener(acc);
 
-        tabbedPane.addTab("Balance Tracker", card1);
-        tabbedPane.addTab("Add Account", card2);
-
-        // TODO
-        JPanel card3 = new JPanel();
-        tabbedPane.addTab("Account List", card3);
-
-        JTextArea accountArea = new JTextArea(15,20);
-        card3.add(accountArea,BorderLayout.CENTER);
+        tabbedPane.addTab("Balance Tracker", page1);
+        tabbedPane.addTab("Add Account", page2);
 
         pane.add(tabbedPane, BorderLayout.CENTER);
         frame.setResizable(false);

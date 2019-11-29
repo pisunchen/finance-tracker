@@ -35,12 +35,18 @@ public class Bank implements AccountObserver {
         accounts.remove(account);
     }
 
+
     // EFFECTS: prints all of the a accounts present
     public void printAccounts(ArrayList<Account> accounts) {
         for (Account a : accounts) {
-            System.out.println(a.getID() + " has a balance of $" + a.getBalance().getInitialBudget());
+            System.out.println("Name: " + a.getID() + " ~  Balance: $" + a.getBalance().getInitialBudget());
         }
     }
+
+    public String printAccount(Account acc) {
+        return "Name: " + acc.getID() + "      ~       Balance: $" + acc.getBalance().getInitialBudget();
+    }
+
 
     public ArrayList<Account> getAccounts() {
         return accounts;

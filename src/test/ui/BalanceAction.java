@@ -47,6 +47,6 @@ public class BalanceAction implements ActionListener {
         }
         revertBack();
         System.out.println("Your current balance: $" + Math.round(bal * 100.0) / 100.0);
-        input3.setText(String.valueOf(Math.round(bal * 100.0) / 100.0));
+        input3.setText("$" + Math.round(bal * 100.0) / 100.0);
     }
 }
