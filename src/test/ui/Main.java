@@ -13,14 +13,14 @@ import java.util.Scanner;
 public class Main {
     private static Balance balance;
     private static Scanner user;
-    private static AccountGUI das;
+    private static AccountGUI ui;
     private static Bank bank;
 
 
     public static void main(String[] args) {
-        das = new AccountGUI();
-        SwingUtilities.invokeLater(das);
-        processProgram();
+        ui = new AccountGUI();
+        SwingUtilities.invokeLater(ui);
+//        processProgram();
     }
 
 

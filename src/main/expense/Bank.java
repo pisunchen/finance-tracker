@@ -24,6 +24,7 @@ public class Bank implements AccountObserver {
     }
 
     @Override
+    // EFFECTS: Whenever the observation occurs, it gives a message of an update
     public void update(AccountObserver accountObserver) {
         System.out.println("An account has been added");
     }
@@ -36,13 +37,14 @@ public class Bank implements AccountObserver {
     }
 
 
-    // EFFECTS: prints all of the a accounts present
+    // EFFECTS: prints all of the accounts present
     public void printAccounts(ArrayList<Account> accounts) {
         for (Account a : accounts) {
             System.out.println("Name: " + a.getID() + " ~  Balance: $" + a.getBalance().getInitialBudget());
         }
     }
 
+    // EFFECTS: prints the information for an individual account
     public String printAccount(Account acc) {
         return "ID: " + acc.getID() + " ~ Balance: $" + acc.getBalance().getInitialBudget() + "\n";
     }
