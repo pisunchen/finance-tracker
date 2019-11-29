@@ -13,6 +13,9 @@ public class Bank implements AccountObserver {
         accounts = new ArrayList<>();
     }
 
+
+    // MODIFIES: accounts
+    // EFFECTS: adds an account into the list of accounts
     public void addAccount(Account account) {
         if (!(accounts.contains(account))) {
             accounts.add(account);
@@ -25,15 +28,17 @@ public class Bank implements AccountObserver {
         System.out.println("An account has been added");
     }
 
+
+    // MODIFIES: accounts
+    // EFFECTS: removes an account from the list of Accounts if its contained inside
     public void removeAccount(Account account) {
-        if (accounts.contains(account)) {
-            accounts.remove(account);
-        }
+        accounts.remove(account);
     }
 
+    // EFFECTS: prints all of the a accounts present
     public void printAccounts(ArrayList<Account> accounts) {
         for (Account a : accounts) {
-            System.out.println(a.getID()  + " has an account with a balance of " + a.getBalance().getInitialBudget());
+            System.out.println(a.getID() + " has a balance of $" + a.getBalance().getInitialBudget());
         }
     }
 

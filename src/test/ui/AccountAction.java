@@ -13,14 +13,17 @@ public class AccountAction implements ActionListener {
 
     private JTextField name;
     private JTextField balance;
-    private Bank bank = new Bank();
+    private Bank bank;
+    private JLabel addition;
 
-    public AccountAction(JTextField name, JTextField balance) {
+    AccountAction(JTextField name, JTextField balance, JLabel addition) {
+        bank = new Bank();
         this.name = name;
         this.balance = balance;
+        this.addition = addition;
     }
 
-    public void revertBack() {
+    private void revertBack() {
         this.name.setText("");
         this.balance.setText("0");
     }
