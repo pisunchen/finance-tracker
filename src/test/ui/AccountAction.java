@@ -37,10 +37,10 @@ public class AccountAction implements ActionListener {
         } else {
             Account user = new SavingsAccount(name.getText(), new Balance(Double.parseDouble(balance.getText())));
             bank.addAccount(user);
-
             int g = bank.getAccounts().size();
             ArrayList<Account> accounts = bank.getAccounts();
             textAccount.setText(textAccount.getText() + bank.printAccount(accounts.get(g - 1)));
         }
     }
 }
+

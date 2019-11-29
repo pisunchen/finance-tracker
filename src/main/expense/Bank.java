@@ -44,9 +44,8 @@ public class Bank implements AccountObserver {
     }
 
     public String printAccount(Account acc) {
-        return "Name: " + acc.getID() + "      ~       Balance: $" + acc.getBalance().getInitialBudget();
+        return "ID: " + acc.getID() + " ~ Balance: $" + acc.getBalance().getInitialBudget() + "\n";
     }
-
 
     public ArrayList<Account> getAccounts() {
         return accounts;

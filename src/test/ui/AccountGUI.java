@@ -40,14 +40,13 @@ public class AccountGUI implements Runnable {
     }
 
     private Dimension setSizeBox() {
-        return new Dimension(50, 50);
+        return new Dimension(30, 30);
     }
-
 
     private void createComponents(Container pane) {
         JTabbedPane tabbedPane = new JTabbedPane();
 
-        // TODO: MODIFIES THE FIRST PANEL
+        // FIRST PANEL CONFIGURATIONS
         JPanel page1 = new JPanel();
         page1.add(new JLabel("Add values into corresponding cells")).setFont(titleFontSetUp());
         page1.add(new JLabel("Add Expense")).setFont(regularFontSetUp());
@@ -60,16 +59,15 @@ public class AccountGUI implements Runnable {
         sum.setEditable(false);
 
         page1.add(button1 = new JButton("Calculate"));
-        page1.add(button2 = new JButton("Reset Balance"));
+        page1.add(button2 = new JButton("Reset Numbers"));
 
         BalanceAction calculate = new BalanceAction(text1, text2, sum);
         button1.addActionListener(calculate);
 
-        ResetBalanceAction reset = new ResetBalanceAction(text1, text2, sum);
+        ResetNumberAction reset = new ResetNumberAction(text1, text2, sum);
         button2.addActionListener(reset);
 
-
-        //TODO: MODIFIES THE SECOND PANEL
+        // SECOND PANEL CONFIGURATIONS
         JPanel page2 = new JPanel();
         page2.add(new JLabel("Insert information to add Account")).setFont(titleFontSetUp());
 

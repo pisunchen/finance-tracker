@@ -20,7 +20,7 @@ public class Main {
     public static void main(String[] args) {
         das = new AccountGUI();
         SwingUtilities.invokeLater(das);
-//        processProgram();
+        processProgram();
     }
 
 

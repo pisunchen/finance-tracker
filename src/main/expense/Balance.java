@@ -59,7 +59,6 @@ public class Balance extends Subject {
         this.initialBudget = initialBudget - this.value;
     }
 
-
     // EFFECTS: loads the saved data
     public int load() throws IOException {
         List<String> lines = Files.readAllLines(Paths.get("outputfile.txt"));

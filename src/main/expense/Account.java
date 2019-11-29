@@ -18,7 +18,7 @@ public abstract class Account extends Subject {
 
 
     // MODIFIES: this
-    // EFFECTS: Sets a bank for an account
+    // EFFECTS: Sets a bank for an account if there is none, removes previous one if there exists one.
     public void setBank(Bank bank) {
         addObserver(bank);
         if (this.bank == null) {

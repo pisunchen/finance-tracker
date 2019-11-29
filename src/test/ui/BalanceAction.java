@@ -33,6 +33,10 @@ public class BalanceAction implements ActionListener {
         if (Double.parseDouble(input1.getText()) < 0 || Double.parseDouble(input2.getText()) < 0) {
             JOptionPane.showMessageDialog(null, "ERROR: Cannot input a negative amount!");
         }
+        if (Double.parseDouble(input1.getText()) > 0 && Double.parseDouble(input2.getText()) > 0) {
+            JOptionPane.showMessageDialog(null, "ERROR: Only one input at a time!");
+            revertBack();
+        }
         if (Double.parseDouble(input1.getText()) > 0) {
             double in = Double.parseDouble(input1.getText());
             bal = bal - in;
