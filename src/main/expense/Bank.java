@@ -13,7 +13,6 @@ public class Bank implements AccountObserver {
         accounts = new ArrayList<>();
     }
 
-
     // MODIFIES: accounts
     // EFFECTS: adds an account into the list of accounts
     public void addAccount(Account account) {
@@ -30,7 +29,7 @@ public class Bank implements AccountObserver {
     }
 
 
-    // MODIFIES: accounts
+    // MODIFIES: this
     // EFFECTS: removes an account from the list of Accounts if its contained inside
     public void removeAccount(Account account) {
         accounts.remove(account);

@@ -13,20 +13,18 @@ import java.util.Scanner;
 public class Main {
     private static Balance balance;
     private static Scanner user;
-    private static AccountGUI ui;
-    private static Bank bank;
 
 
     public static void main(String[] args) {
-        ui = new AccountGUI();
+        AccountGUI ui = new AccountGUI();
         SwingUtilities.invokeLater(ui);
-        processProgram();
+//        processProgram();
     }
 
 
     public static void processProgram() {
         user = new Scanner(System.in);
-        bank = new Bank();
+        Bank bank = new Bank();
 
         System.out.println("Welcome to the expense tracker");
         balance = new Balance(0);

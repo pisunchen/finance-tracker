@@ -31,7 +31,7 @@ public class Balance extends Subject {
 
 
     // MODIFIES: this
-    // EFFECTS: deducts the current balance by the value amount, throws an exception according to values inputted
+    // EFFECTS: deducts the current balance by the value amount, throws an exception if value inputted is negative
     public double subBalance(int value) throws SpentAlotException {
         this.value = value;
         if (value < 0) {
@@ -43,7 +43,7 @@ public class Balance extends Subject {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds the current balance by the value amount, throws an exception according to values inputted
+    // EFFECTS: adds the current balance by the value amount, throws an exception if value inputted is negative
     public double addBalance(int value) throws NoNegBalanceException {
         this.value = value;
         if (value < 0) {
